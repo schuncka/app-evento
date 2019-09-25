@@ -74,24 +74,15 @@
 		    return new Usuario($row->id, $row->nome, $row->login, $row->senha, $row->tipo);
         }
 
-        public function buscarUsuario($login,$senha)
+        public function buscarPorLogin($login)
         {
-            
-            
- 		    $query = 'SELECT * FROM usuario WHERE login=:login AND senha=:senha';		
+ 		    $query = 'SELECT * FROM usuario WHERE login=:login';		
             $pdo = PDOFactory::getConexao(); 
 		    $comando = $pdo->prepare($query);
-            $comando->bindParam (':login', $login);
-            $comando->bindParam (':senha', $senha);
-            $comando->execute();            
-            
-            $success=false;
-            if ($comando ->rowCount()){
-                $success=true;
-            }
-            
-            //$row = $comando->fetch(PDO::FETCH_OBJ);
-		    return $success;
+		    $comando->bindParam ('login', $login);
+		    $comando->execute();
+		    $row = $comando->fetch(PDO::FETCH_OBJ);
+		    return new Usuario($row->id,$row->nome,$row->login,$row->senha,$row->tipo);           
         }
 
 

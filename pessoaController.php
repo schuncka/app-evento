@@ -59,7 +59,7 @@ class PessoaController {
 
           
           $pessoa = new Pessoa($id, $nomePessoa, $cpf, $cidade, $tipo);
-
+          
           $dao= new PessoaDAO; 
           $dao->atualizar($pessoa);
           $pessoa = $dao->buscarPorId($id);

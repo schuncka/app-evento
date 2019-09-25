@@ -34,7 +34,7 @@
 
         public function atualizar(Pessoa $pessoa)
         {
-            //var_dump($palestra);
+           
             
             $qAtualizar = "UPDATE pessoa SET nome=:nome_pessoa,cpf=:cpf,cidade=:cidade,tipo=:tipo  WHERE id= :id";     
             $pdo = PDOFactory::getConexao();
@@ -70,8 +70,11 @@
 		    $comando = $pdo->prepare($query);
 		    $comando->bindParam (':id', $id);
             $comando->execute();            
-		    $row = $comando->fetch(PDO::FETCH_OBJ);
-		    return new Pessoa($row->id,$row->nome,$row->cpf,$row->cidade,$row->tipo);
+            $row = $comando->fetch(PDO::FETCH_OBJ);
+            
+            $pessoa = new Pessoa($row->id,$row->nome,$row->cpf,$row->cidade,$row->tipo);
+            
+            return $pessoa;
         }
     }
 ?>

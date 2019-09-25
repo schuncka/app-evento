@@ -1,15 +1,10 @@
 <?php
+use Slim\Factory\AppFactory;
 
 use Psr\Http\Message\ResponseInterface as Response;
 use Psr\Http\Message\ServerRequestInterface as Request;
 
-$key = "app-evento";
-$token = array(
-  "iss" => "http://exemple.org",
-  "aud" => "http://exemple.com",
-  "iat" => "1356999524",
-  "nbf" => "1357000000" 
-);
+
 
 
 include_once('pessoaController.php');
@@ -27,7 +22,7 @@ $app->group('/api/pessoa', function($app){
     $app->get('/{id}', 'PessoaController:buscarId');    
     $app->put('/{id}', 'PessoaController:atualizarPessoa');
     $app->delete('/{id}', 'PessoaController:deletarPessoa');
-});
+})->add('UsuarioController:validarToken');
 
 
 $app->group('/api/palestra', function($app){
@@ -37,7 +32,7 @@ $app->group('/api/palestra', function($app){
   $app->get('/{id}', 'PalestraController:buscarId');    
   $app->put('/{id}', 'PalestraController:atualizarPalestra');
   $app->delete('/{id}', 'PalestraController:deletarPalestra');
-});
+})->add('UsuarioController:validarToken');
 
 
 $app->group('/api/usuario', function($app){
@@ -49,14 +44,7 @@ $app->group('/api/usuario', function($app){
   $app->delete('/{id}', 'UsuarioController:deletarUsuario');
 });
 
-$app->group('/api/auth', function($app){
-  $app->post('',  'UsuarioController:buscarUsuario');
- // $app->post('', 'UsuarioController:inserirUsuario');
-
-  //$app->get('/{id}', 'UsuarioController:buscarId');    
-  //$app->put('/{id}', 'UsuarioController:atualizarUsuario');
-  //$app->delete('/{id}', 'UsuarioController:deletarUsuario');
-});
+$app->post('/api/auth','UsuarioController:autenticar');
 
 $app->run();
 ?>
