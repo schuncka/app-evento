@@ -2,7 +2,7 @@
 
 include_once('usuario.php');
 include_once('usuarioDAO.php');
-//use Psr\Http\Message\ResponseInterface as Response;
+use Psr\Http\Message\ResponseInterface as Responses;
 use Psr\Http\Message\ServerRequestInterface as Request;
 
 use Firebase\JWT\JWT;
@@ -13,7 +13,7 @@ use Slim\Psr7\Response;
 class UsuarioController {
   private $secretKey = "app@evento";
 
-      public function listarUsuario(Request $request, Response $response, $args) {
+      public function listarUsuario(Request $request, Responses $response, $args) {
       
           $dao= new UsuarioDAO;   
           $usuario = $dao->listar();
@@ -22,7 +22,7 @@ class UsuarioController {
           return $response;
       }
       //listarUsuario buscarId
-      public function buscarId(Request $request, Response $response, $args) {
+      public function buscarId(Request $request, Responses $response, $args) {
           $id = $args["id"];
           
           $dao= new UsuarioDAO; 
@@ -32,7 +32,7 @@ class UsuarioController {
           return $response;
       }
 
-      public function inserirUsuario(Request $request, Response $response, $args){
+      public function inserirUsuario(Request $request, Responses $response, $args){
         
         $data = $request->getParsedBody();
         
@@ -51,7 +51,7 @@ class UsuarioController {
           return $response;
       }
 
-      public function atualizarUsuario(Request $request, Response $response, $args) {
+      public function atualizarUsuario(Request $request, Responses $response, $args) {
           
           $data = $request->getParsedBody();
         
@@ -73,7 +73,7 @@ class UsuarioController {
       }
 
 
-      public function deletarUsuario(Request $request, Response $response, $args) {
+      public function deletarUsuario(Request $request, Responses $response, $args) {
         
         $id   = $args['id'];
         
