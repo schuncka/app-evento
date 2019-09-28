@@ -81,8 +81,9 @@
 		    $comando = $pdo->prepare($query);
 		    $comando->bindParam ('login', $login);
 		    $comando->execute();
-		    $row = $comando->fetch(PDO::FETCH_OBJ);
-		    return new Usuario($row->id,$row->nome,$row->login,$row->senha,$row->tipo);           
+            $row = $comando->fetch(PDO::FETCH_OBJ);
+            $usuario = new Usuario($row->id, $row->nome, $row->login, $row->senha, $row->tipo);
+		    return $usuario;           
         }
 
 

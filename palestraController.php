@@ -21,6 +21,7 @@ class PalestraController{
 
             public function buscarId(Request $request, Response $response, $args) {
                 $id = $args["id"];
+               // var_dump($request->getHeaders());
                 $response->getBody()->write("Listar palestra Id");
                 
                 $dao= new PalestraDAO; 

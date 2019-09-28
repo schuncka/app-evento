@@ -23,7 +23,8 @@ class UsuarioController {
       }
       //listarUsuario buscarId
       public function buscarId(Request $request, Responses $response, $args) {
-          $id = $args["id"];
+          
+        $id = $args["id"];
           
           $dao= new UsuarioDAO; 
           $usuario = $dao->buscarPorId($id);
@@ -99,7 +100,8 @@ class UsuarioController {
             {
                 $token = array(
                     'user' => strval($usuario->id),
-                    'nome' => $usuario->nome
+                    'nome' => $usuario->nome,
+                    'tipo' => $usuario->tipo
                 );
                 //var_dump($token);
                 $jwt = JWT::encode($token, $this->secretKey);
@@ -119,8 +121,9 @@ class UsuarioController {
             {
                 try {
                     $decoded = JWT::decode($token[0], $this->secretKey, array('HS256'));
-
+                    //var_dump($decoded);
                     if($decoded){
+                        //var_dump($handler->handle($request));
                         $response = $handler->handle($request);
                         return($response);
                     }
