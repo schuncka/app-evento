@@ -1,17 +1,19 @@
 <?php
 include_once("palestra.php");
 include_once("palestraDao.php");
+include_once("pessoa.php");
+include_once("pessoaDao.php");
 
 use Psr\Http\Message\ResponseInterface as Response;
 use Psr\Http\Message\ServerRequestInterface as Request;
 
 //listarPalestra  inserirPalestra buscarId  atualizarPalestra  deletarPalestra
 
-class PalestraController{
+class inscricaoController{
 
 
             //inicio palestra
-            public function listarPalestra(Request $request, Response $response, $args) { 
+            public function listarInscricao(Request $request, Response $response, $args) { 
                 $dao= new PalestraDAO;   
                 $palestra = $dao->listar();
 
@@ -19,7 +21,7 @@ class PalestraController{
                 return $response;
             }
 
-            public function buscarId(Request $request, Response $response, $args) {
+            public function buscarInscricao(Request $request, Response $response, $args) {
                 $id = $args["id"];
                // var_dump($request->getHeaders());
                 $response->getBody()->write("Listar palestra Id");
@@ -31,17 +33,14 @@ class PalestraController{
                 return $response;
             }
 
-            public function inserirPalestra (Request $request, Response $response, $args){
+            public function inserirInscricao (Request $request, Response $response, $args){
                 $response->getBody()->write("Insere palestra");
                 $data = $request->getParsedBody();
                 
-                $nomePalestra = $data['nomePalestra'];
-                $palestrante  = $data['palestrante'];
-                $inicio       = $data['inicio'];  
-                $fim          = $data['fim'];
-
+                $idPalestra = $data['idPalestra'];
+                $idPessoa   = $data['idPessoa'];
                 
-                $palestra = new Palestra(0, $nomePalestra, $palestrante, $inicio, $fim);
+                $inscricao = new Inscricao(0, $idPalestra, $idPessoa);
 
                 $dao= new PalestraDAO; 
                 $palestra = $dao->inserir($palestra);
@@ -51,7 +50,7 @@ class PalestraController{
                 return $response;
             }
 
-            public function atualizarPalestra(Request $request, Response $response, $args) {
+            public function atualizarInscricao(Request $request, Response $response, $args) {
                 $response->getBody()->write("Atualiza palestra");
                 $data = $request->getParsedBody();
             
@@ -73,7 +72,7 @@ class PalestraController{
             }
 
 
-            public function deletarPalestra(Request $request, Response $response, $args) {
+            public function deletarInscricao(Request $request, Response $response, $args) {
             
             $data = $request->getParsedBody();  
             $id   = $args['id'];
