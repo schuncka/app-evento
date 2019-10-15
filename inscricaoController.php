@@ -1,8 +1,10 @@
 <?php
-include_once("palestra.php");
-include_once("palestraDao.php");
-include_once("pessoa.php");
-include_once("pessoaDao.php");
+//include_once("palestra.php");
+//include_once("palestraDao.php");
+//include_once("pessoa.php");
+//include_once("pessoaDao.php");
+include_once("inscricao.php");
+include_once("inscricaoDao.php");
 
 use Psr\Http\Message\ResponseInterface as Response;
 use Psr\Http\Message\ServerRequestInterface as Request;
@@ -12,7 +14,7 @@ use Psr\Http\Message\ServerRequestInterface as Request;
 class inscricaoController{
 
 
-            //inicio palestra
+            //inicio inscricao
             public function listarInscricao(Request $request, Response $response, $args) { 
                 $dao= new PalestraDAO;   
                 $palestra = $dao->listar();
@@ -22,7 +24,7 @@ class inscricaoController{
             }
 
             public function buscarInscricao(Request $request, Response $response, $args) {
-                $id = $args["id"];
+               $id = $args["id"];
                // var_dump($request->getHeaders());
                 $response->getBody()->write("Listar palestra Id");
                 
@@ -33,20 +35,23 @@ class inscricaoController{
                 return $response;
             }
 
-            public function inserirInscricao (Request $request, Response $response, $args){
+            public function inserirInscricao(Request $request, Response $response, $args){
                 $response->getBody()->write("Insere palestra");
                 $data = $request->getParsedBody();
-                
-                $idPalestra = $data['idPalestra'];
-                $idPessoa   = $data['idPessoa'];
-                
-                $inscricao = new Inscricao(0, $idPalestra, $idPessoa);
-
-                $dao= new PalestraDAO; 
-                $palestra = $dao->inserir($palestra);
+               
+                $idPalestra = $data["idpalestra"];
+                $idPessoa  =  $data['idpessoa'];
+              //  print($idPalestra);
+               // print($idPessoa);
+               
+               
+                $inscricao = new Inscricao(0, 1, 1);
+var_dump($inscricao);
+                $dao= new InscricaoDAO; 
+                $inscricao = $dao->inserir($inscricao);
                 
                 $response = $response->withStatus(201);
-                $response = $response->withJSON($palestra);
+                $response = $response->withJSON($inscricao);
                 return $response;
             }
 

@@ -4,18 +4,18 @@
     include_once 'inscricao.php';
     include_once 'PDOFactory.php';
 
-    class PalestraDAO
+    class InscricaoDAO
     {
-        public function inserir(Palestra $palestra)
+        public function inserir(Inscricao $inscricao)
         {
-            $qInserir = "INSERT INTO palestra(nome_palestra,palestrante,inicio,fim) VALUES (:nome_palestra,:palestrante,:inicio,:fim)";            
+           // var_dump($inscricao);
+            $qInserir = "INSERT INTO inscricao(id_palestra,id_pessoa) VALUES (:idpalestra,:idpessoa)";            
             $pdo = PDOFactory::getConexao();
             $comando = $pdo->prepare($qInserir);
 
-            $comando->bindParam(":nome_palestra",$palestra->nomePalestra);
-            $comando->bindParam(":palestrante"  ,$palestra->palestrante);
-            $comando->bindParam(":inicio"       ,$palestra->inicio);
-            $comando->bindParam(":fim"          ,$palestra->fim);
+            $comando->bindParam(":idpalestra"   ,$inscricao->idPalestra);
+            $comando->bindParam(":idpessoa"   ,$inscricao->idPessoa);
+            
             $comando->execute();
             $palestra->id = $pdo->lastInsertId();
             return $palestra;
