@@ -11,23 +11,26 @@
             $this->idpessoa = $idPessoa;            
         }
 
+
+
         function getId(){
             return $this->id;
         }
-        function getidPalestra(){
+        function getIdPalestra(){
             return $this->idpalestra;
         }
-        function getidPessoa(){
+        function getIdPessoa(){
             return $this->idpessoa;
         }
 
         function setId($id){
             $this->id = $id;
         }
-        function setidPalestra($idPalestra){
+        function setIdPalestra($idPalestra){
+          
             $this->idpalestra = $idPalestra;
         }
-        function setPalestrante($idPessoa){
+        function setIdPessoa($idPessoa){
             $this->idpessoa = $idPessoa;
         }
 

@@ -42,7 +42,7 @@ class PalestraController{
 
                 
                 $palestra = new Palestra(0, $nomePalestra, $palestrante, $inicio, $fim);
-
+var_dump($palestra);
                 $dao= new PalestraDAO; 
                 $palestra = $dao->inserir($palestra);
                 

@@ -8,7 +8,7 @@
     {
         public function inserir(Inscricao $inscricao)
         {
-           // var_dump($inscricao);
+            //var_dump($inscricao);
             $qInserir = "INSERT INTO inscricao(id_palestra,id_pessoa) VALUES (:idpalestra,:idpessoa)";            
             $pdo = PDOFactory::getConexao();
             $comando = $pdo->prepare($qInserir);
@@ -17,13 +17,13 @@
             $comando->bindParam(":idpessoa"   ,$inscricao->idPessoa);
             
             $comando->execute();
-            $palestra->id = $pdo->lastInsertId();
-            return $palestra;
+            $inscricao->id = $pdo->lastInsertId();
+            return $inscricao;
         }
 
-        public function deletar($id)
+  /*      public function deletar($id)
         {
-            $qDeletar = "DELETE from palestra WHERE id=:id";            
+            $qDeletar = "DELETE from inscricao WHERE id=:id";            
             $pdo = PDOFactory::getConexao();
             $comando = $pdo->prepare($qDeletar);
             $comando->bindParam(":id",$id);
@@ -33,7 +33,7 @@
             return $success;
         }
 
-        public function atualizar(Palestra $palestra)
+       /* public function atualizar(Palestra $palestra)
         {
             //var_dump($palestra);
             $qAtualizar = "UPDATE palestra SET nome_palestra= :nome_palestra, palestrante= :palestrante, inicio= :inicio, fim= :fim WHERE id= :id";            
@@ -48,8 +48,8 @@
             
             $comando->execute(); 
         }
-
-        public function listar()
+*/
+ /*       public function listar()
         {
 		    $query = 'SELECT * FROM palestra  ';
     		$pdo = PDOFactory::getConexao();
@@ -72,6 +72,6 @@
 		    $comando->execute();
 		    $row = $comando->fetch(PDO::FETCH_OBJ);
 		    return new Palestra($row->id,$row->nome_palestra,$row->palestrante,$row->inicio,$row->fim);
-        }
+        }*/
     }
 ?>
