@@ -57,14 +57,13 @@ var_dump($inscricao);
             public function inserirInscricao (Request $request, Response $response, $args){
                 $response->getBody()->write("Insere Inscricao");
                 $data = $request->getParsedBody();
-                
-                $idPalestra = $data['idpalestra'];
-                $idPessoa  = $data['idpessoa'];
-           // print_r($inscricao);
+                $inscricao="";
+                $idPalestra = $data['idPalestra'];
+                $idPessoa  = $data['idPessoa'];
+  
                 
                 $inscricao = new Inscricao(0, $idPalestra, $idPessoa);
-               // $inscricao = new Inscricao(0, 13, 13);
-var_dump($inscricao);
+
                 $dao= new InscricaoDAO; 
                 $inscricao = $dao->inserir($inscricao);
                 

@@ -7,8 +7,8 @@
 
        function __construct($id, $idPalestra, $idPessoa){           
             $this->id = $id;
-            $this->idpalestra = $idPalestra;
-            $this->idpessoa = $idPessoa;            
+            $this->idPalestra = $idPalestra;
+            $this->idPessoa = $idPessoa;            
         }
 
 
@@ -17,10 +17,10 @@
             return $this->id;
         }
         function getIdPalestra(){
-            return $this->idpalestra;
+            return $this->idPalestra;
         }
         function getIdPessoa(){
-            return $this->idpessoa;
+            return $this->idPessoa;
         }
 
         function setId($id){
@@ -28,10 +28,10 @@
         }
         function setIdPalestra($idPalestra){
           
-            $this->idpalestra = $idPalestra;
+            $this->idPalestra = $idPalestra;
         }
         function setIdPessoa($idPessoa){
-            $this->idpessoa = $idPessoa;
+            $this->idPessoa = $idPessoa;
         }
 
 
