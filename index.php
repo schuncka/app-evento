@@ -36,9 +36,15 @@ $app->group('/api/palestra', function($app){
 })->add('UsuarioController:validarToken');
 
 $app->group('/api/inscricao', function($app){
-  $app->post('', 'inscricaoController:inserirInscricao');
 
-});
+  $app->post('', 'inscricaoController:inserirInscricao');
+  $app->get('/{id}','inscricaoController:buscarId');
+
+  $app->put('/{id}','inscricaoController:atualizarInscricao');
+  $app->get('',  'InscricaoController:listarInscricao');
+  $app->delete('/{id}', 'InscricaoController:deletarInscricao');
+
+})->add('UsuarioController:validarToken');
 //->add('UsuarioController:validarToken');
   // $app->get('',  'InscricaoController:listarInscricao');
  
