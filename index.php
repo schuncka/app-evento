@@ -1,70 +1,113 @@
-<?php
-use Slim\Factory\AppFactory;
 
-use Psr\Http\Message\ResponseInterface as Response;
-use Psr\Http\Message\ServerRequestInterface as Request;
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors , adapted Gabriel Schucnk">
+    <meta name="generator" content="Jekyll v3.8.5">
+    <title>AutoAtendimento</title>
 
-
-
-
-include_once('pessoaController.php');
-include_once('palestraController.php');
-include_once('usuarioController.php');
-include_once('inscricaoController.php');
-
-require __DIR__ . './vendor/autoload.php';
-
-$app = AppFactory::create();
-
-$app->group('/api/pessoa', function($app){
-    $app->get('', 'PessoaController:listarPessoa');
-    $app->post('', 'PessoaController:inserirPessoa');
-
-    $app->get('/{id}', 'PessoaController:buscarId');    
-    $app->put('/{id}', 'PessoaController:atualizarPessoa');
-    $app->delete('/{id}', 'PessoaController:deletarPessoa');
-})->add('UsuarioController:validarToken');
+    <link rel="canonical" href="https://getbootstrap.com/docs/4.3/examples/jumbotron/">
+    
+    <!-- Bootstrap core CSS -->
+<link href="vendor/twbs/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 
 
-$app->group('/api/palestra', function($app){
-  $app->get('',  'PalestraController:listarPalestra');
-  $app->post('', 'PalestraController:inserirPalestra');
+    <style>
+      .bd-placeholder-img {
+        font-size: 1.125rem;
+        text-anchor: middle;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
+      }
 
-  $app->get('/{id}', 'PalestraController:buscarId');    
-  $app->put('/{id}', 'PalestraController:atualizarPalestra');
-  $app->delete('/{id}', 'PalestraController:deletarPalestra');
-})->add('UsuarioController:validarToken');
+      @media (min-width: 768px) {
+        .bd-placeholder-img-lg {
+          font-size: 3.5rem;
+        }
+      }
+    </style>
+    <!-- Custom styles for this template -->
+    <link href="jumbotron.css" rel="stylesheet">
+  </head>
+  <body>
+    <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
+  <a class="navbar-brand" href="#">Navbar</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
 
-$app->group('/api/inscricao', function($app){
+  <div class="collapse navbar-collapse" id="navbarsExampleDefault">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item active">
+        <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+      </li>
+      <!--li class="nav-item">
+        <a class="nav-link" href="#">Link</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link disabled" href="#">Disabled</a>
+      </li>
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" id="dropdown01" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Dropdown</a>
+        <div class="dropdown-menu" aria-labelledby="dropdown01">
+          <a class="dropdown-item" href="#">Action</a>
+          <a class="dropdown-item" href="#">Another action</a>
+          <a class="dropdown-item" href="#">Something else here</a>
+        </div>
+      </li>
+    </ul>
+    <form class="form-inline my-2 my-lg-0">
+      <input class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search">
+      <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+    </form-->
+  </div>
+</nav>
 
-  $app->post('', 'inscricaoController:inserirInscricao');
-  $app->get('/{id}','inscricaoController:buscarId');
+<main role="main">
 
-  $app->put('/{id}','inscricaoController:atualizarInscricao');
-  $app->get('',  'InscricaoController:listarInscricao');
-  $app->delete('/{id}', 'InscricaoController:deletarInscricao');
+  <!-- Main jumbotron for a primary marketing message or call to action -->
+  <div class="jumbotron">
+    <div class="container">
+      <h1 class="display-3">AUTO ATENDIMENTO</h1>
+      <p>Utilize uma das opções abaixo</p>
+      <!--p><a class="btn btn-primary btn-lg" href="#" role="button">Learn more &raquo;</a></p-->
+    </div>
+  </div>
 
-})->add('UsuarioController:validarToken');
-//->add('UsuarioController:validarToken');
-  // $app->get('',  'InscricaoController:listarInscricao');
- 
+  <div class="container">
+    <!-- Example row of columns -->
+    <div class="row">
+      <div class="col-md-4">
+        <h2>CADASTRO</h2>
+        <p>Tenha em mãos seus documentos pessoais. (CPF, RG....)</p>
+        <p><a class="btn btn-secondary" href="#" role="button">CADASTRAR &raquo;</a></p>
+      </div>
+      <div class="col-md-4">
+        <h2>PALESTRAS</h2>
+        <p>Relação das palestras do evento</p>
+        <p><a class="btn btn-secondary" href="#" role="button">ENTRAR &raquo;</a></p>
+      </div>
+      <div class="col-md-4">
+        <h2>INSCRIÇÃO</h2>
+        <p>Inscrição em alguma palestra.</p>
+        <p><a class="btn btn-secondary" href="#" role="button">View details &raquo;</a></p>
+      </div>
+    </div>
 
- // $app->get('/{id}', 'InscricaoController:buscarInscricao');    
- // $app->put('/{id}', 'InscricaoController:atualizarInscricao');
-  //$app->delete('/{id}', 'InscricaoController:deletarInscricao');
+    <hr>
 
+  </div> <!-- /container -->
 
+</main>
 
-$app->group('/api/usuario', function($app){
-  $app->get('',  'UsuarioController:listarUsuario');
-  $app->post('', 'UsuarioController:inserirUsuario');
-
-  $app->get('/{id}', 'UsuarioController:buscarId');    
-  $app->put('/{id}', 'UsuarioController:atualizarUsuario');
-  $app->delete('/{id}', 'UsuarioController:deletarUsuario');
-});
-
-$app->post('/api/auth','UsuarioController:autenticar');
-
-$app->run();
-?>
+<footer class="container">
+  <p>&copy; Gabriel Schunck</p>
+</footer>
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+      <script>window.jQuery || document.write('<script src="/docs/4.3/assets/js/vendor/jquery-slim.min.js"><\/script>')</script><script src="/docs/4.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-xrRywqdh3PHs8keKZN+8zzc5TX0GRTLCcmivcbNJWm2rs5C8PRhcEn3czEjhAO9o" crossorigin="anonymous"></script></body>
+</html>
