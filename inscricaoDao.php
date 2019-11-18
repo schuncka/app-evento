@@ -1,6 +1,8 @@
 <?php
     include_once 'palestra.php';
     include_once 'pessoa.php';
+    include_once 'palestraDao.php';
+    include_once 'pessoaDao.php';
     include_once 'inscricao.php';
     include_once 'PDOFactory.php';
 
@@ -35,7 +37,6 @@
 
         public function atualizar(Inscricao $inscricao)
         {
-            //var_dump($palestra);
             $qAtualizar = "UPDATE inscricao SET id_palestra= :id_palestra, id_pessoa= :id_pessoa WHERE id= :id";            
             $pdo = PDOFactory::getConexao();
             $comando = $pdo->prepare($qAtualizar);
@@ -55,10 +56,10 @@
     		$comando->execute();
             $produtos=array();	
 		    while($row = $comando->fetch(PDO::FETCH_OBJ)){
-			    $palestra[] = new Inscricao($row->id,$row->id_palestra,$row->id_pessoa);
+			    $inscricao[] = new Inscricao($row->id,$row->id_palestra,$row->id_pessoa);
             }
            
-            return $palestra;
+            return $inscricao;
         }
 
         public function buscarPorId($id)

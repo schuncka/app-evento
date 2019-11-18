@@ -9,6 +9,7 @@
            
             $qInserir = "INSERT INTO pessoa(nome, cpf, cidade, tipo) VALUES (:nome_pessoa,:cpf,:cidade,:tipo)";
             $pdo = PDOFactory::getConexao();
+            
             $comando = $pdo->prepare($qInserir);
 
             $comando->bindParam(":nome_pessoa",$pessoa->nome);

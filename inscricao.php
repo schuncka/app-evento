@@ -1,4 +1,8 @@
 <?php
+  include_once 'palestra.php';
+  include_once 'pessoa.php';
+  include_once 'palestraDao.php';
+  include_once 'pessoaDao.php';
     class Inscricao  {
         public $id;
         public $idPalestra;
@@ -8,7 +12,7 @@
        function __construct($id, $idPalestra, $idPessoa){           
             $this->id = $id;
             $this->idPalestra = $idPalestra;
-            $this->idPessoa = $idPessoa;            
+            $this->idPessoa = $idPessoa;
         }
 
 
@@ -36,4 +40,5 @@
 
 
     }
+    
 ?>
