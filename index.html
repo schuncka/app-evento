@@ -36,7 +36,7 @@
   </head>
   <body>
     <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
-  <a class="navbar-brand" href="#">Navbar</a>
+  <a class="navbar-brand" href="#">AutoAtendimento</a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
@@ -44,7 +44,7 @@
   <div class="collapse navbar-collapse" id="navbarsExampleDefault">
     <ul class="navbar-nav mr-auto">
       <li class="nav-item active">
-        <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+        <a class="nav-link" href="http://localhost:8000/index.html">Home <span class="sr-only">(current)</span></a>
       </li>
       <!--li class="nav-item">
         <a class="nav-link" href="#">Link</a>
@@ -73,9 +73,7 @@
   <!-- Main jumbotron for a primary marketing message or call to action -->
   <div class="jumbotron">
     <div class="container">
-      <h1 class="display-3">AUTO ATENDIMENTO</h1>
-      <p>Utilize uma das opções abaixo</p>
-      <p><a class="btn btn-primary btn-lg" href="#" role="button" onclick="buscaPessoas();" data-toggle="modal" data-target="#myModal">Pessoas</a></p>
+      <h1 class="display-4">AUTO ATENDIMENTO</h1>
     </div>
   </div>
 
@@ -84,13 +82,13 @@
     <div class="row">
       <div class="col-md-4">
         <h2>CADASTRO</h2>
-        <p>Tenha em mãos seus documentos pessoais. (CPF, RG....)</p>
-        <p><a class="btn btn-secondary" href="#" role="button">CADASTRAR &raquo;</a></p>
+        <p>Tenha em mãos seus documentos pessoais.</p>
+        <p><a class="btn btn-secondary" href="#" role="button" onclick="buscaPessoas();">Pessoas &raquo;</a></p>
       </div>
       <div class="col-md-4">
         <h2>PALESTRAS</h2>
-        <p>Relação das palestras do evento</p>
-        <p><a class="btn btn-secondary" href="#" role="button">ENTRAR &raquo;</a></p>
+        <p>Relação de palestras</p>
+        <p><a class="btn btn-secondary" href="#" role="button" onclick="buscaPalestras();">Palestras &raquo;</a></p>
       </div>
       <div class="col-md-4">
         <h2>INSCRIÇÃO</h2>
@@ -110,6 +108,14 @@
 </footer>
   <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>    
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
-  <script src="./js/script.js"></script>
+  <script src="./js/app.js"></script>
+  <script src="./js/entidade/pessoa.js"></script>
+  <script src="./js/controller/pessoas.js"></script>
+  <script src="./js/view/pessoa_v.js"></script>
+
+  <script src="./js/entidade/palestra.js"></script>
+  <script src="./js/controller/palestras.js"></script>
+  <script src="./js/view/palestra_v.js"></script>
+
 </body>
 </html>

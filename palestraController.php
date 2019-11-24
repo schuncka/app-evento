@@ -15,7 +15,7 @@ class PalestraController{
                 $dao= new PalestraDAO;   
                 $palestra = $dao->listar();
 
-                $response = $response->withJSON($palestra,201);    
+                $response = $response->withJSON($palestra,200);    
                 return $response;
             }
 
