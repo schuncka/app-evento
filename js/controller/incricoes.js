@@ -1,4 +1,4 @@
-function buscaPessoas(){
+function buscaInscricao(){
     var xhttp = new XMLHttpRequest();
     var objJson
     var inner="";
@@ -9,21 +9,21 @@ function buscaPessoas(){
      for (var key in objJson) {
       
       if (objJson.hasOwnProperty(key)) {
-          inner = inner  + gridPessoas(objJson[key]);
+          inner = inner  + gridPalestra(objJson[key]);
           //console.log( objJson);
         }        
      }
+     
     document.getElementById("painel").innerHTML = 
-      "<p><a class='btn btn-primary btn-lg' href='#' role='button' onclick='novoPessoa();'>Novo</a></p>"+
+      "<p><a class='btn btn-primary btn-lg' href='#' role='button' onclick='novoPalestra();'>Novo</a></p>"+
       "<table class='table table-striped'>"+
       "  <thead>"+
       "    <tr>"+
       "      <th>del</th>"+
       "      <th>upd</th>"+
       "      <th>id</th>"+
-      "      <th>Nome</th>"+
-      "      <th>CPF</th>"+
-      "      <th>Tipo</th>"+
+      "      <th>Pessoa</th>"+
+      "      <th>Palestra</th>"+      
       "    </tr>"+
       "  </thead>"+
       "  <tbody>"+
@@ -31,52 +31,46 @@ function buscaPessoas(){
       "  </tbody>"+
       "</tbody>";
 
-     //+"</div></div></div>";
-     //alert(inner)
-     //$('#buscaPessoas').dialog('show'); 
-     //console.log( objJson)
-    //alert(this.responseText)
     return objJson;
     }
   };  
-  xhttp.open("GET", "http://localhost:8000/api/pessoa", true);
+  xhttp.open("GET", "http://localhost:8000/api/inscricao", true);
   xhttp.setRequestHeader("Authorization", "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyIjoiNiIsIm5vbWUiOiJnYWJyaWVsMyJ9.t-kwptDpayMaIrZS2XqG6_cHAqteGpvghuvZEg-k2NM", true);
   xhttp.send();
 }
 
-function gridPessoas(prObjJson){
+function gridPalestra(prObjJson){
 var strMain = "";
 var objJson = prObjJson;
 let html = 
           `<tr>
-              <td onclick="deletaPessoa(${objJson.id})" style="cursor:pointer;">[  DEL  ]</td>
-              <td onclick="novoPessoa('${objJson.nome}','${objJson.cpf}','${objJson.cidade}','${objJson.tipo}','${objJson.id}')" style="cursor:pointer">[  UPD  ]</td>
+              <td onclick="deletaPalestra(${objJson.id})" style="cursor:pointer;">[  DEL  ]</td>
+              <td onclick="novoPalestra('${objJson.nomePalestra}','${objJson.palestrante}','${objJson.inicio}','${objJson.fim}','${objJson.id}')" style="cursor:pointer">[  UPD  ]</td>
               <td>${objJson.id}</td>
-              <td>${objJson.nome}</td>
-              <td>${objJson.cpf}</td>
-              <td>${objJson.tipo}</td>
+              <td>`+buscaPessoa(${objJson.idPessoa}+`</td>
+              <td>${objJson.idPalestra}</td>
+              
           </tr>`;
   return html;
 
 }
 ///fim das operacoes com dom
 
-function salvaPessoa(pessoa){
+function salvaPalestra(palestra){
   
   var xhttp = new XMLHttpRequest();
   var elements = document.querySelectorAll( "input, select, textarea" );
-  console.log(pessoa);
+  console.log(palestra);
   
-  obj = JSON.stringify( pessoa );
-  if (pessoa.id == ""){
-   // console.log(obj);
+  obj = JSON.stringify( palestra );
+  if (palestra.id == ""){
+    console.log(obj);
     xhttp.onreadystatechange = function() {
-      if (this.readyState == 4 && this.status == 201) {    
-     
-      buscaPessoas();
+      if (this.readyState == 4 && this.status == 201) {         
+        buscaPalestras();
       }
     };
-    xhttp.open("post", "http://localhost:8000/api/pessoa", true);
+    xhttp.open("post", "http://localhost:8000/api/palestra", true);
     xhttp.setRequestHeader("Content-Type","application/json");
     xhttp.setRequestHeader("Authorization","eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyIjoiNiIsIm5vbWUiOiJnYWJyaWVsMyJ9.t-kwptDpayMaIrZS2XqG6_cHAqteGpvghuvZEg-k2NM", true);
     xhttp.send(obj);
@@ -84,10 +78,10 @@ function salvaPessoa(pessoa){
   }else{
     xhttp.onreadystatechange = function() {
       if (this.readyState == 4 && this.status == 200) {    
-      buscaPessoas();
+      buscaPalestras();
       }
     };
-    xhttp.open("put", "http://localhost:8000/api/pessoa/"+pessoa.id, true);
+    xhttp.open("put", "http://localhost:8000/api/palestra/"+palestra.id, true);
     xhttp.setRequestHeader("Content-Type","application/json");
     xhttp.setRequestHeader("Authorization","eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyIjoiNiIsIm5vbWUiOiJnYWJyaWVsMyJ9.t-kwptDpayMaIrZS2XqG6_cHAqteGpvghuvZEg-k2NM", true);
     xhttp.send(obj);
@@ -96,31 +90,17 @@ function salvaPessoa(pessoa){
   }
 }
 
-function deletaPessoa(prId){
+function deletaPalestra(prId){
   var xhttp = new XMLHttpRequest();
   xhttp.onreadystatechange = function() {
     if (this.readyState == 4 && this.status == 200) {    
-     buscaPessoas();
+     buscaPalestras();
     }
   };
-  xhttp.open("delete", "http://localhost:8000/api/pessoa/"+prId, true);
+  xhttp.open("delete", "http://localhost:8000/api/palestra/"+prId, true);
   xhttp.setRequestHeader("Content-Type","application/json");
   xhttp.setRequestHeader("Authorization","eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyIjoiNiIsIm5vbWUiOiJnYWJyaWVsMyJ9.t-kwptDpayMaIrZS2XqG6_cHAqteGpvghuvZEg-k2NM", true);
   xhttp.send();
 
 }
 
-
-function buscaPessoa(prId){
-  var xhttp = new XMLHttpRequest();
-  
-  xhttp.onreadystatechange = function() {
-    if (this.readyState == 4 && this.status == 200) {    
-     return (JSON.parse(this.responseText))
-    }
-  };
-  xhttp.open("get", "http://localhost:8000/api/pessoa/"+prId, true);
-  xhttp.setRequestHeader("Content-Type","application/json");
-  xhttp.setRequestHeader("Authorization","eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyIjoiNiIsIm5vbWUiOiJnYWJyaWVsMyJ9.t-kwptDpayMaIrZS2XqG6_cHAqteGpvghuvZEg-k2NM", true);
-  xhttp.send();
-}
