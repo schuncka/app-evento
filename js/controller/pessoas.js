@@ -113,14 +113,15 @@ function deletaPessoa(prId){
 
 function buscaPessoa(prId){
   var xhttp = new XMLHttpRequest();
-  
+ // console.log("busca pessoa: "+ prId)
   xhttp.onreadystatechange = function() {
-    if (this.readyState == 4 && this.status == 200) {    
-     return (JSON.parse(this.responseText))
+    if (this.readyState == 4 && this.status == 200) {          
+      return JSON.parse(this.responseText);        
     }
   };
   xhttp.open("get", "http://localhost:8000/api/pessoa/"+prId, true);
   xhttp.setRequestHeader("Content-Type","application/json");
   xhttp.setRequestHeader("Authorization","eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyIjoiNiIsIm5vbWUiOiJnYWJyaWVsMyJ9.t-kwptDpayMaIrZS2XqG6_cHAqteGpvghuvZEg-k2NM", true);
-  xhttp.send();
+  //xhttp.send();
+  
 }

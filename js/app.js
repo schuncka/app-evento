@@ -34,3 +34,4 @@ function carregaGridPalestra(){
     buscaPalestras();
 }
 
+

@@ -18,7 +18,7 @@ class inscricaoController{
                 $dao= new InscricaoDAO;   
                 $palestra = $dao->listar();
 
-                $response = $response->withJSON($palestra,201);    
+                $response = $response->withJSON($palestra,200);    
                 return $response;
             }
 
