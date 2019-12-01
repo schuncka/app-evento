@@ -34,4 +34,12 @@ function carregaGridPalestra(){
     buscaPalestras();
 }
 
+function retornaJson(prJson){
+    if (prJson ){
+    console.log(prJson.nome);
+    return prJson;
+}
+    
+}
+
 

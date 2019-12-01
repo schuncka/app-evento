@@ -45,8 +45,8 @@ var objJson = prObjJson;
 var pessoa = buscaPessoa(objJson.idPessoa);
 //alert(pessoa)
 
-//console.log("inscricao: "+buscaPessoa(objJson.idPessoa))
-console.log(returnJson(buscaPessoa(objJson.idPessoa)));
+console.log("inscricaos: "+ retornaJson(buscaPessoa(objJson.idPessoa)) );
+
 //console.log(pessoa);
 let html = 
           `<tr>
